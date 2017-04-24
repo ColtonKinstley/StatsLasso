@@ -20,9 +20,10 @@
 \headcommand {\sectionentry {4}{Oracle Property}{3}{Oracle Property}{0}}
 \headcommand {\beamer@sectionpages {3}{2}}
 \headcommand {\beamer@subsectionpages {3}{2}}
-\headcommand {\slideentry {4}{0}{1}{3/3}{}{0}}
+\headcommand {\beamer@subsectionentry {0}{4}{1}{3}{Adaptive Lasso}}\headcommand {\beamer@subsectionpages {3}{2}}
+\headcommand {\slideentry {4}{1}{1}{3/3}{Adaptive Lasso}{0}}
 \headcommand {\beamer@framepages {3}{3}}
-\headcommand {\slideentry {4}{0}{2}{4/6}{}{0}}
+\headcommand {\slideentry {4}{1}{2}{4/6}{Adaptive Lasso}{0}}
 \headcommand {\beamer@framepages {4}{6}}
 \headcommand {\beamer@partpages {1}{6}}
 \headcommand {\beamer@subsectionpages {3}{6}}

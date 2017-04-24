@@ -7,3 +7,4 @@
 \beamer@subsectionintoc {3}{1}{Cross-Validation}{3}{0}{2}
 \beamer@subsectionintoc {3}{2}{BIC}{3}{0}{2}
 \beamer@sectionintoc {4}{Oracle Property}{3}{0}{3}
+\beamer@subsectionintoc {4}{1}{Adaptive Lasso}{3}{0}{3}
