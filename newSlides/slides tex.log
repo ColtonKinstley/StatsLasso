@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  26 APR 2017 15:24
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  26 APR 2017 15:37
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1052,8 +1052,7 @@ Package: beamerinnerthemerectangles 2010/06/17  (rcs-revision d02a7cf4d8ae)
 (/usr/local/texlive/2016/texmf-dist/tex/latex/beamer/themes/color/beamercolorth
 emebeaver.sty
 Package: beamercolorthemebeaver 2010/06/17  (rcs-revision d02a7cf4d8ae)
-)
-No file "slides tex".aux.
+) (./slides tex.aux)
 \openout1 = `"slides tex.aux"'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 10.
@@ -1070,6 +1069,7 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 10.
 LaTeX Font Info:    ... okay on input line 10.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 10.
 LaTeX Font Info:    ... okay on input line 10.
+
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -1147,6 +1147,8 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 10.
 LaTeX Info: Redefining \pageref on input line 10.
 LaTeX Info: Redefining \nameref on input line 10.
+
+(./slides tex.out) (./slides tex.out)
 \@outlinefile=\write5
 \openout5 = `"slides tex.out"'.
 
@@ -1229,7 +1231,7 @@ Dictionary: translator-theorem-dictionary, Language: English
 )
 LaTeX Info: Redefining \includegraphics on input line 10.
 
-No file "slides tex".nav.
+(./slides tex.nav)
 
 Package hyperref Warning: Option `pdfauthor' has already been used,
 (hyperref)                setting the option has no effect on input line 12.
@@ -1238,15 +1240,15 @@ Package hyperref Warning: Option `pdfauthor' has already been used,
 LaTeX Font Warning: Font shape `OT1/cmss/m/n' in size <4> not available
 (Font)              size <5> substituted on input line 13.
 
-[1
+[1{/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
-{/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-No file "slides tex".toc.
-[2
+]
+(./slides tex.toc) [2
 
 ]
 LaTeX Font Info:    Try loading font information for U+msa on input line 32.
- (/usr/local/texlive/2016/texmf-dist/tex/latex/amsfonts/umsa.fd
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Try loading font information for U+msb on input line 32.
@@ -1295,6 +1297,8 @@ thkerncmss.
 ]
 [19
 
+] [20
+
 ]
 \tf@nav=\write6
 \openout6 = `"slides tex.nav"'.
@@ -1305,49 +1309,45 @@ thkerncmss.
 \tf@snm=\write8
 \openout8 = `"slides tex.snm"'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 287.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 287.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 306.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 306.
  (./slides tex.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 287.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 287.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 306.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 306.
+Package rerunfilecheck Info: File `"slides tex".out' has not changed.
+(rerunfilecheck)             Checksum: 7FEA27C7B37C6BE9BF56407130F147A4;862.
 
-
-Package rerunfilecheck Warning: File `"slides tex".out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `"slides tex".out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  7154782A913A297804AE125958A10358;862.
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 1.0pt have occurred.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 287.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 306.
  ) 
 Here is how much of TeX's memory you used:
- 17155 strings out of 493014
- 330379 string characters out of 6133351
- 400821 words of memory out of 5000000
- 20227 multiletter control sequences out of 15000+600000
- 13688 words of font info for 50 fonts, out of 8000000 for 9000
+ 17335 strings out of 493014
+ 333272 string characters out of 6133351
+ 409394 words of memory out of 5000000
+ 20393 multiletter control sequences out of 15000+600000
+ 17487 words of font info for 64 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 56i,15n,55p,419b,569s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 56i,19n,60p,419b,772s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
 ></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb>
-</usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></
-usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></u
-sr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></us
-r/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/
-local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmss9.pfb></usr/lo
-cal/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/lo
-cal/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></usr/loc
-al/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/loca
-l/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on "slides tex.pdf" (19 pages, 144502 bytes).
+</usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><
+/usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></u
+sr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></us
+r/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr
+/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/l
+ocal/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmss9.pfb></usr/loc
+al/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/loc
+al/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi12.pfb></usr/loc
+al/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></usr/loca
+l/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local
+/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
+Output written on "slides tex.pdf" (20 pages, 179388 bytes).
 PDF statistics:
- 607 PDF objects out of 1000 (max. 8388607)
- 562 compressed objects within 6 object streams
- 56 named destinations out of 1000 (max. 500000)
- 43 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1058 PDF objects out of 1200 (max. 8388607)
+ 989 compressed objects within 10 object streams
+ 58 named destinations out of 1000 (max. 500000)
+ 155 words of extra memory for PDF output out of 10000 (max. 10000000)
 

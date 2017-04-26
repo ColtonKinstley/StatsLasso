@@ -44,7 +44,7 @@
      \end{equation*}
     
     \item We minimize the sum of the squared differences, i.e minimize the function
-    $$ E({\color{purple}\hat{\beta} }) = \sum_{i=1}^n {\color{red}{\epsilon_i^2}} = \norm{{\color{blue}Y}- {\color{purple}X\beta}}^2$$
+    $$ E({\color{purple}\hat{\beta} }) = \sum_{i=1}^n {\color{red}{\epsilon_i^2}} = \norm{{\color{blue}Y}^2_2- {\color{purple}X\beta}}_2^2$$
     
     \item It can be shown that the minimizers are
     $\hat{\beta} = (X^TX)^{-1}X^TY$ but these solutions are usually approximated
@@ -95,7 +95,7 @@ Subset Selection
 \frametitle{Improving OLS: Ridge Regression}
 Ridge Regression
 \begin{itemize}
-\item In Ridge regression we again minimize $E(\beta) = \norm{Y-X\beta}^2$
+\item In Ridge regression we again minimize $E(\beta) = \norm{Y-X\beta}_2^2$
 \item But subject to the constraint that $$\sum_{i=1}^{p-1}\beta_i^2 = \norm{\beta}_2^2 \leq t \ \text{for} \ t\geq 0$$
 \end{itemize}
 
@@ -108,7 +108,7 @@ Ridge Regression
 \begin{itemize}
 \item This is equivalent to the unconstrained minimization of
 \[
-E^R(\beta)=\norm{Y=X\beta}^2 + \lambda \norm{\beta}^2
+E^R(\beta)=\norm{Y=X\beta}_2^2 + \lambda \norm{\beta}_2^2
 \]
 where $\lambda$ is a function of $t$
 \end{itemize}
@@ -134,7 +134,7 @@ Ridge Regression
         \item L.A.S.S.O: Least Absolute Shrinkage and Selection Operator.
         \item Like Ridge we minimize $E(\beta)$ under a constraint, the lasso coefficients are found by minimizing
         \[
-        E^L(\beta) = \norm{Y-X\beta} \text{ subject to } \norm{\hat{\beta}}_1^2 \leq t
+        E^L(\beta) = \norm{Y-X\beta}_2^2 \text{ subject to } \norm{\hat{\beta}}_1^2 \leq t
         \]
         \item We are using the 1 norm, instead of the 2 norm used in ridge
         \item As in Ridge this can be written as an unconstrained optimization problem with $\lambda (t)$
@@ -171,7 +171,6 @@ $$picture of constrained problem$$
 
 
 \section[]{Tuning Parameter}
-\subsection{How best to choose}
 
 \frame{
     \frametitle{Tuning parameter}
@@ -190,7 +189,7 @@ $$picture of constrained problem$$
 }
 
 \frame{
-\frametitle{something}
+\frametitle{Tuning parameter}
 \begin{itemize}
              \item Setting $t \leq t_{0}$ will \color{red} shrink \color{black} the solutions toward 0.
              \item For example, setting $t = \frac{t_{0}}{2}$ is similar to selecting the best subset containing half of the regressors. 
@@ -198,10 +197,30 @@ $$picture of constrained problem$$
 
 }
 
+
 \frame{
 \frametitle{Why is this?}
 In the 2-D case this looks like
 $$picture of constrained problem$$
+}
+
+
+\subsection{How best to choose}
+\frame{
+\frametitle{Selecting t or $\lambda(t)$}
+\begin{itemize}
+\item
+In the equivalent unconstrained problem $\lambda(t)$ is a function of t
+\[
+E^L(\beta)=\norm{Y=X\beta}_2^2 + \lambda \norm{\beta}_1^2
+\]
+\item
+Because the 
+\end{itemize}
+
+
+
+
 }
 
 
