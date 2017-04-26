@@ -40,8 +40,7 @@
 	
 	\item Let $X$ denote the $n \times p$ design matrix where the $x_{ij}$th entry is the $i$th point of sample data corresponding to the $j$th dependent variable and $Y$ the response vector
 		
-	
-	\item  So long as $n \geq p$ OLS gives us a best-fit hyper-plane as follows:
+
 	\end{itemize}
 }
 
@@ -51,7 +50,11 @@
 {
 \begin{itemize}
 
-    \item The {\color{red}difference} between the actual and predicted response for each data point $i \in 1 \dots n$ is
+	\item  So long as $n \geq p$, OLS gives us a best-fit hyper-plane as follows:
+    
+    \begin{itemize}
+    \item The {\color{red}difference}, or the error, between the actual and 
+    predicted response for each data point $i \in 1 \dots n$ is
     
     \begin{equation*}
      {\color{red} \epsilon_{i}} =  {\color{blue} Y_{i}} - {\color{purple} X\beta}
@@ -62,8 +65,9 @@
     
     \item It can be shown that the minimizers are
     $\hat{\beta} = (X^TX)^{-1}X^TY$ but these solutions are usually approximated
+    \end{itemize}
+    
 \end{itemize}
-
 }
 
 \subsection{What can be improved?}
@@ -171,7 +175,7 @@ Ridge Regression
 \begin{itemize}
 \item Lasso has the desirable property that it will usually set some of the coefficients equal to zero 
 \item Like in subset selection this leads to a more interpretable model overall
-\item In Ridge and OLS the minimizing coefficients are almost surely non-zero
+\item In Ridge and OLS the minimizing coefficients are almost certainly non-zero
 \end{itemize}
 }
 
@@ -221,6 +225,8 @@ $$picture of constrained problem$$
 \frame{
 \frametitle{Tuning parameter}
 \begin{itemize}
+    In order to obtain an optimal estimate, of the \hat{\beta} coefficients, the
+    tuning parameter $t$ must be chosen carefully. Recall that we saw the tuning parameter as a 
              \item Setting $t \leq t_{0}$ will \color{red} shrink \color{black} the solutions toward 0.
              \item For example, setting $t = \frac{t_{0}}{2}$ is similar to selecting the best subset containing half of the regressors. 
 \end{itemize}
@@ -292,6 +298,17 @@ Because the
 \end{multicols}
 }
 
+\frame{
+    
+    \begin{itemize}
+        \item {\color{purple}$y_1= \beta_0 + \beta_1 x_1 + \beta_2 x_2+ \dots +\beta_{p-1} x_{p-1}$}
+        \item
+        $\hat\bold{{\beta}(lasso)} = argmin\underset{\beta} \norm{y- \sum_{j-1}^p x_j \beta_j}^2 + \lambda \sum_{j=1}^p |\beta|$
+    \end{itemize}
+
+
+}
+
 
 \subsection{Oracle Property}
 %Oracle Property
@@ -351,7 +368,12 @@ Because the
 }
 
 
+\frame{
+\frametitle{References}
 
+
+
+}}
 
 
 
