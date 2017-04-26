@@ -1,0 +1,16 @@
+\beamer@endinputifotherversion {3.36pt}
+\beamer@sectionintoc {2}{Improving OLS}{3}{0}{1}
+\beamer@subsectionintoc {2}{1}{What can be improved?}{5}{0}{1}
+\beamer@subsectionintoc {2}{2}{Subset Selection \& Ridge Regression}{7}{0}{1}
+\beamer@sectionintoc {3}{Lasso}{11}{0}{2}
+\beamer@subsectionintoc {3}{1}{Variable Selection}{12}{0}{2}
+\beamer@subsectionintoc {3}{2}{Properties of the Estimates}{14}{0}{2}
+\beamer@sectionintoc {4}{Tuning Parameter}{15}{0}{3}
+\beamer@subsectionintoc {4}{1}{How best to choose}{15}{0}{3}
+\beamer@sectionintoc {5}{Examples}{18}{0}{4}
+\beamer@subsectionintoc {5}{1}{Prostate Cancer}{18}{0}{4}
+\beamer@subsectionintoc {5}{2}{Oil and Gas}{18}{0}{4}
+\beamer@subsectionintoc {5}{3}{House Prices}{18}{0}{4}
+\beamer@sectionintoc {6}{Simulation Analysis}{18}{0}{5}
+\beamer@sectionintoc {7}{Adaptive Lasso}{18}{0}{6}
+\beamer@subsectionintoc {7}{1}{Oracle Property}{18}{0}{6}
