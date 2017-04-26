@@ -16,4 +16,4 @@
 \beamer@subsectionintoc {5}{3}{House Prices}{23}{0}{4}
 \beamer@sectionintoc {6}{Simulation Analysis}{23}{0}{5}
 \beamer@sectionintoc {7}{Adaptive Lasso}{24}{0}{6}
-\beamer@subsectionintoc {7}{1}{Oracle Property}{25}{0}{6}
+\beamer@subsectionintoc {7}{1}{Oracle Property}{26}{0}{6}
