@@ -1,8 +1,10 @@
 \documentclass{beamer}
 \usepackage[utf8]{inputenc}
+\usepackage{verbatim}
+\usepackage{graphicx}
 \usetheme{Berlin}
 \usecolortheme{beaver}
-
+\usepackage{color}
 %\usepackage{beamerthemesplit} // Activate for custom appearance
 
 \title{The Lasso Method of Parameter Selection}
@@ -17,36 +19,231 @@
 \section[Outline]{}
 \frame{\tableofcontents}
 
-\section{Improving OLS}
-\subsection{Ridge}
-\subsection{Subset Selection}
-\subsection{Lasso}
-
-\section{Tuning parameter estimation}
-\subsection{Cross-Validation}
-\subsection{BIC}
-
-\section{Oracle Property}
-
 \frame
 {
+\section[]{Improving OLS}
 \frametitle{Improving OLS}
-	Recall that the ordinary least squares procedure (OLS) estimates unknown coefficients in a linear regression model by minimizing the squared difference between the predicted and actual responses.
-	In OLS regression we minimize
-	\begin{equation*}
-\sum_{i=1}^N\{(y_i - \alpha-\sum_j\beta_jx_{ij} )^2 \}
-	\end{equation*}
+	\begin{itemize}
+	\item Recall the ordinary least squares procedure (OLS) estimates unknown coefficients in a linear regression model by minimizing the \color{red} squared difference \color{black} between the \color{purple} predicted \color{black} and \color{blue} actual responses. \color{black}
+	
+	\item Let $X$ denote a p-dimensional independent variable and $Y$ the corresponding dependent variable. If we have a sample of $n$ observations
+	
+	\begin{center}(\color{blue} $(Y_{1},X_{11},...,X_{1p})),...,(X_{n1},...,X_{np}),Y_{n}$)\color{black}),\end{center}
+	
+	then so long as $n \geq p$ OLS gives us a best-fit hyper-plane
+	
+	\begin{center}\color{purple}$Y = \hat{\beta} X$ \end{center}
+	as follows:
+	\end{itemize} }
+\frame
+{
+
+I wrote this part for non-linear regression  in one dimension for some reason. It needs to be turned into a linear regression for multiple dimensions.
+\begin{itemize}
+    \item Given any n $B$\color{black}, we can find the \color{red} difference \color{black} for each observation:
+    \begin{equation*} \color{red} \epsilon_{i} \color{black} =  \color{blue} Y_{i} \color{purple} - (A_{n}X^{n} + A_{n-1}X^{n-1} +... +A_{1}X + B)
+    \end{equation*}
+    
+    \item We want to choose the \color{purple} $A_{i}$'s and B \color{black} to minimize the \color{red} sum of the squared differences \color{black}:
+    
+    \begin{equation*}
+    \color{red} \epsilon \color{black} = \sum_{i=1}^N \color{red} \epsilon_{i}^{2}
+    \end{equation*}
+    
+    \item We typically do this with basic multivariable calculus. 
+    
+\end{itemize}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+
+}
+
+\frame{
+
+\frametitle{Recurring Examples}
+
+Here we can find the OLS-estimates of the examples we will be using. Just stating them is probably fine.
+
+Before that, it might be a good time to talk about the number of independent + dependent variables (What is "many", what is "few", etc.)
+
+%	In OLS regression we minimize
+%	\begin{equation*}
+%\sum_{i=1}^N\{(y_i - \alpha-\sum_j\beta_jx_{ij} )^2 \}
+%	\end{equation*}
 }
 
 
+\subsection{What can we improve?}
 \frame
 {
-  \frametitle{Features of the Beamer Class}
-
+  \frametitle{Problems with OLS}
+  
+  Two common problems with OLS estimates are as follows:
   \begin{itemize}
-  \item<1-> Normal LaTeX class.
-  \item<2-> Easy overlays.
-  \item<3-> No external programs needed.      
+  \item<1-> Imprecision! 
+  \begin{itemize}
+        \item<2-> The expected value of the error term is 0 but the variance may be large.
+        \item<3-> How does this happen? Recall that the least squares estimation $\hat{\beta} = (X^\intercal X)^{-1}X^\intercal Y$.
+        \item<4->If $(X^\intercal X)$ is near-singular, then small changes in the X might lead to large changes in $\hat{\beta}$.
+        \item<5->So, even if our $\hat{\beta}$ fits one sample well, there is no guarantee it will fit other samples well, let alone the population!  
   \end{itemize}
+  \item<6-> Interpretation!
+  \begin{itemize}
+      \item<7-> A large number of independent variables can make the model difficult to interpret, especially when we want to isolate the "most important" variables.
+      \item<8-> Do we care about variables with very small coefficients?
+  \end{itemize}
+  \end{itemize}
+}
+
+
+\subsection{Subset Selection & Ridge Regression}
+\frame
+{
+    \frametitle{Improving OLS: Subset Selection and Ridge Regression}
+    
+    \begin{itemize}
+    \item<1->Subset Selection
+        \begin{itemize}
+          \item<2->Simply ignore one or more of the independent variables! That is, set the coefficient(s) to 0.
+          \item<3->This helps with interpretability, if only because there is less to interpret.
+          \item<4->Drawback: Subset Selection is a discrete process. Regressors are either kept or dropped; there is no in-between. Small changes in the sampling data can thus result in very different models.
+        \end{itemize}
+    \item<5->Ridge Regression
+        \begin{itemize}
+            \item<6->Add a small constant value $\lambda$ to diagonal entries of $(X^\intercal X)$!
+            \item<7->Prevents the matrix from being singular or near-singular.
+            \item<8-> Drawback: Reduces the variance, but does not set any coefficients to 0, so it doesn't help with interpretability. It also adds bias. 
+        \end{itemize}
+    \end{itemize}
+}
+
+\section{Lasso}
+\frame{
+    \frametitle{Enter the Lasso}
+    \begin{itemize}
+        \item<1-> L.A.S.S.O: Least Absolute Shrinkage and Selection Operator.
+        \item<2-> With (matrix here), $\hat{\beta} = \begin{bmatrix}
+           \hat{\beta}_{1} \\
+           \hat{\beta}_{2} \\
+           \vdots \\
+           \hat{\beta}_{p}
+         \end{bmatrix}$, as before, the lasso estimate $\hat{\alpha},\hat{\beta}$ is defined by \vspace{.5cm} \begin{center}  $(\hat{\alpha},\hat{\beta}) = arg min \{ \sum_{i=1}^{N} (y_{i} - \alpha - \sum_{j=1}^{p} (\hat{\beta_{j}} x_{ij})) \} $ \end{center} \vspace{.1cm} \begin{center} subject to $\sum_{j=1}^p |B_{j}| \leq t$ \end{center}
+        \item<4-> $t \geq 0$ is a tuning parameter.
+        \item<5-> For all $t$, $\hat{\alpha} = \bar{y}$. Thus, we can assume without loss of generality that $\bar{y} = 0$.
+    \end{itemize}
+
+}
+
+\frame{
+    \frametitle{The Geometry of Lasso}
+    \begin{itemize}
+        \item<1-> Colton will insert the picture here.
+        \item<2-> This is the interpretation of the constrained case
+    \end{itemize}
+}
+
+\frame{
+\frametitle{The Algebra of Lasso}
+\begin{itemize}
+        \item<1-> This is the intrepretation of the unconstrained case
+        
+    \end{itemize}
+}
+
+\subsection{Benifits of Lasso}
+\frame{
+\frametitle{The Algebra of Lasso}
+\begin{itemize}
+        \item<1-> This is the intrepretation of the unconstrained case
+        
+    \end{itemize}
+}
+
+
+\section[]{Tuning Parameter}
+\frame{
+    \frametitle{Tuning parameter}
+    \begin{itemize}
+        \item<1-> t controls the amount of shrinkage we apply to the estimates.
+        \item<2-> Let $\hat{\beta} = \begin{bmatrix}
+           \hat{\beta}_{1} \\
+           \hat{\beta}_{2} \\
+           \vdots \\
+           \hat{\beta}_{p}
+         \end{bmatrix}$ and define $t_{0} = \sum_{j=1}^p |B_{j}|$.
+         \begin{itemize}
+             \item<3-> Letting $t \leq t_{0}$ will \color{red} shrink \color{black} the solutions toward 0.
+             \item<4->For example, setting $t = \frac{t_{0}}{2}$ is similar to selecting the best subset of $ \frac{p}{2}$ regressors. 
+             \item<5-> Unlike ridge regression, \color{purple} some coefficients may be equal to 0. \color{black}
+         \end{itemize}
+    \end{itemize}
+}
+
+\begin{comment} \frame{
+    \frametitle{The Orthonormal Design Case (1)}
+    \begin{itemize}
+        \item<1->Let $X$ be the orthonormal $n$ x $p$ design matrix; that is:
+        \begin{itemize}
+          \item<2->The $ij$th entry of $X$ is $x_{ij}$ (the $i$th observed value of the $j$th regressor)
+          \item<3-> $X^{-1} = X^{\intercal}$, so that $X^{\intercal} X = I$. 
+        \end{itemize}
+   \end{itemize}
+}
+\end{comment}
+
+
+\frame{
+    \frametitle{More Frames Go Here}
+    \begin{itemize}
+        \item<1-> We should fill this with all the examples we have.
+        \item<2-> Make sure to compare the lasso with ridge regression and subset selection.
+    \end{itemize}
+}
+
+\frame{
+    \frametitle{Lasso vs. Subset Selection vs. Ridge Regression}
+    \begin{itemize}
+        \item<1-> Small number of large effects.
+        \begin{itemize}
+            \item<2-> Subset selection is best, Lasso is second best, Ridge Regression is worst.
+        \end{itemize}
+        \item<3-> Small to moderate number of moderate-sized effects.
+        \begin{itemize}
+            \item<4->Lasso is best, Ridge regression is second best, Subset selection is worst.
+        \end{itemize}
+        \item<5-> Large of small effects.
+        \begin{itemize}
+            \item<6-> Ridge regression is best, Lasso is second best, Subset selection is worst.
+        \end{itemize}
+    \end{itemize}
+    
+    \begin{itemize}
+        \item<7->Do these results make sense?
+        \begin{itemize}
+            \item<8->Recall that the Lasso was designed to work like Ridge regression but with some of the benefits of Subset selection.
+            \item<9->It thus makes sense for the Lasso to fall between Ridge regression and Subset selection on extreme cases and to beat both of them on cases not well-suited to either.
+        \end{itemize}
+    \end{itemize}
+}
+
+\frame{
+    \frametitle{Lasso vs. Subset Selection vs. Ridge Regression}
+    
+    \begin{itemize}
+        \item<1->Do these results make sense?
+        \begin{itemize}
+            \item<2->Recall that the Lasso was designed to work like Ridge regression but with some of the benefits of Subset selection.
+            \item<3->It thus makes sense for the Lasso to fall between Ridge regression and Subset selection on extreme cases and to beat both of them on cases not well-suited to either.
+        \end{itemize}
+        \item<4-> \color{red} CAUTION! \color{black}
+        \begin{itemize}
+            \item<5-> These results refer to \color{red} prediction accuracy \color{black}.
+            \item<6-> As for \color{blue} interpretability: \color{black}
+            \begin{itemize}
+                \item<7-> Subset selection > Lasso > Ridge regression, alwayss.
+                \item<8-> Why? More nonzero coefficients = more interpretable, always. 
+            \end{itemize}
+        \end{itemize}
+    \end{itemize}
+
+
 }
 \end{document}
