@@ -2,6 +2,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{verbatim}
 \usepackage{graphicx}
+\usepackage{multicol}
 \usetheme{Berlin}
 \usecolortheme{beaver}
 \usepackage{color}
@@ -13,9 +14,22 @@
 \frame{\titlepage}
 
 \section[Outline]{}
-\frame{\tableofcontents[]}
+\frame{
+\begin{multicols}{2}
+ \tableofcontents[%pausesections
+ ]
+ 
+ \end{multicols}
+}
 
 \section{Improving OLS}
+
+\frame{
+\begin{multicols}{2}
+ \tableofcontents[currentsection, hideothersubsections]
+\end{multicols}
+}
+
 \frame
 {
 \frametitle{Improving OLS}
@@ -128,6 +142,14 @@ Ridge Regression
 }
 
 \section{Lasso}
+
+\frame{
+\begin{multicols}{2}
+ \tableofcontents[currentsection, hideothersubsections]
+\end{multicols}
+}
+
+
 \frame{
     \frametitle{Enter the Lasso}
     \begin{itemize}
@@ -169,8 +191,16 @@ $$picture of constrained problem$$
 
 }
 
-
+\addtocontents{toc}{\newpage}
 \section[]{Tuning Parameter}
+
+
+\frame{
+\begin{multicols}{2}
+ \tableofcontents[currentsection, hideothersubsections]
+\end{multicols}
+}
+
 
 \frame{
     \frametitle{Tuning parameter}
@@ -205,7 +235,6 @@ $$picture of constrained problem$$
 }
 
 
-\subsection{How best to choose}
 \frame{
 \frametitle{Selecting t or $\lambda(t)$}
 \begin{itemize}
@@ -217,15 +246,22 @@ E^L(\beta)=\norm{Y=X\beta}_2^2 + \lambda \norm{\beta}_1^2
 \item
 Because the 
 \end{itemize}
+}
+
+\subsection{Cross-Validation}
+\subsection{BIC}
+\subsection{Shooting Method}
+
+\section{Examples}
 
 
-
-
+\frame{
+\begin{multicols}{2}
+ \tableofcontents[currentsection, hideothersubsections]
+\end{multicols}
 }
 
 
-
-\section{Examples}
 \subsection{Prostate Cancer}
 \subsection{Oil and Gas}
 \subsection{House Prices}
@@ -239,8 +275,24 @@ Because the
 %Simulations
 \section{Simulation Analysis}
 
+\frame{
+\begin{multicols}{2}
+ \tableofcontents[currentsection, hideothersubsections]
+\end{multicols}
+}
+
+
+
 %Adaptive Lasso
 \section{Adaptive Lasso}
+
+\frame{
+\begin{multicols}{2}
+ \tableofcontents[currentsection, hideothersubsections]
+\end{multicols}
+}
+
+
 \subsection{Oracle Property}
 %Oracle Property
 
