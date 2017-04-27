@@ -7,6 +7,7 @@
 \usecolortheme{beaver}
 \usepackage{color}
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\graphicspath{ {images/} }
 
 \begin{document}
 \title{The Lasso Method of Parameter Selection}
@@ -105,7 +106,7 @@ Subset Selection
 \item Simply ignore one or more of the independent variables! That is, set the coefficient(s) to 0.
 \item This helps with interpretability, if only because there is less to interpret.
 \item Drawback: Subset Selection is a discrete process. Regressors are either kept or dropped; there is no in-between. Small changes in the sampling data can thus result in very different models.
-\item Not computationally practical for high dimensional data
+\item Not computationally practical for high dimensional data.
 \end{itemize}
 }
 
@@ -140,7 +141,7 @@ Ridge Regression
 \begin{itemize}
 \item In terms of the coefficients, $\hat{\beta}^{R}$, it is equivalent to adding a small constant value $\lambda$ to diagonal entries of $(X^T X)$ in the OLS solution
 \item This prevents the matrix from being singular or near-singular.
-\item Drawback: Reduces the variance, but does not set any coefficients to 0, so it doesn't help with interpretability. It also adds bias.
+\item Drawback: Reduces the variance of the error term, but does not set any coefficients to 0, so it doesn't help with interpretability. It also adds bias.
 \end{itemize}
 
 }
@@ -182,7 +183,9 @@ Ridge Regression
 \frame{
 \frametitle{Why is this?}
 Consider the constrained optimization problems for lasso and ridge in the case of two variables
-$$picture of constrained problem$$
+
+\center{\includegraphics[scale=.25]{tibfig2}}
+
 }
 
 
@@ -201,69 +204,74 @@ $$picture of constrained problem$$
     \frametitle{Tuning parameter}
     In order to obtain an optimal estimate, of the $\hat{\beta}$ coefficients, the tuning parameter $t$ must be chosen carefully. Recall that in ridge regression,
     \[
-    E_R(\beta) = \sum_{i=1}^n{\Big(y_i-\beta_0 - \sum_{j=1}^p {\beta_j x_{ij}}\Big)^2} + \lambda \sum_{j=1}^p {\beta_j^2} = OLS + \lambda \sum_{j=1}^p {\beta_j^2}
+    E_R(\beta) = \norm{Y - X\beta}_1^2 + \lambda \norm{\beta}_2^2 = OLS + \lambda \norm{\beta}_2^2
     \]
-    the least squares component is being minimized such that 
+    the least squares component is being minimized with the constraint 
     \[
-    \sum_{j=1}^p {\beta_j^2} \le t
+    \lambda \norm{\beta}_2^2 = \sum_{j=1}^p {\beta_j^2} \le t
     \]
     }
      
     
 \frame{
+    \frametitle{Tuning parameter}
     Similarly, remember that the Lasso method 
     \[
-    E_R(\beta)=\sum_{i=1}^n{\Big(y_i-\beta_0 - \sum_{j=1}^p {\beta_j x_{ij}}\Big)^2} + \lambda \sum_{j=1}^p {|\beta_j|} = OLS + \lambda \sum_{j=1}^p {|\beta_j|}
+    E_R(\beta)= \norm{Y-X\beta}_1^2 + \lambda \norm{\beta}_1^2 = OLS + \lambda \norm{\beta}_1^2
     \]
-    is minimizing the least squares component given the condition that 
+    is minimizing the least squares component given the constraint  
     \[
-    \sum_{j=1}^p {|\beta_j|} \le t
+    \lambda \norm{\beta}_1^2 = \sum_{j=1}^p {|\beta_j|} \le t
     \]
-}
+} 
 
 \frame{
-    \begin{itemize}
-        Tuning parameter $t$ or $\lambda(t)$ directly determines the amount of shrinkage applied to the OLS estimates. Consider the OLS estimates as vector  
-        \linebreak $\hat{\beta}^o = 
-        \begin{bmatrix}
-           \hat{\beta}_{1} \\
-           \hat{\beta}_{2} \\
-           \vdots \\
-           \hat{\beta}_{p}
-         \end{bmatrix}$ 
-         \linebreak Define $t_{o} = \sum_{j=1}^p |\beta_{j}|$. at $t \geq t_o$ we recover the OLS estimates
-    \end{itemize}
-}
-
-\frame{
-\frametitle{Tuning parameter}
-     \begin{itemize}
+        Tuning parameter $t$ or $\lambda(t)$ directly determines the amount of shrinkage applied to the OLS estimates.
+        \begin{itemize}
+        \item Consider the OLS estimates as vector $\hat{\beta}^{ols}$. 
+        % \linebreak $\hat{\beta}^{ols} = 
+        % \begin{bmatrix}
+        %   \hat{\beta}_{1} \\
+        %   \hat{\beta}_{2} \\
+        %   \vdots \\
+        %   \hat{\beta}_{p}
+        %  \end{bmatrix}$ 
+         \item Define $t_{ols} = \sum_{j} |\hat{\beta}_{j}|$. 
+         \item When $t \geq t_{ols}$, we recover the OLS estimates. It follows then that setting $t \leq t_{ols}$ will \color{red} shrink \color{black} the solutions toward 0. 
          \item Setting $t \leq t_{0}$ will \color{red} shrink \color{black} the solutions toward 0.
-         \item For example, setting $t = \frac{t_{0}}{2}$ is similar to selecting the best subset containing half of the regressors. 
+         \item For example, setting $t = \frac{t_{0}}{2}$ is similar to selecting the best subset containing half of the regressors.
     \end{itemize}
-            
 }
+
+% \frame{
+% \frametitle{Tuning parameter}
+%      \begin{itemize}
+%          \item Setting $t \leq t_{0}$ will \color{red} shrink \color{black} the solutions toward 0.
+%          \item For example, setting $t = \frac{t_{0}}{2}$ is similar to selecting the best subset containing half of the regressors. 
+%     \end{itemize}
+            
+% }
 
 
 
 \frame{
 \frametitle{Why is this?}
-In the 2-D case this looks like
-$$picture of constrained problem$$
-}
+In the 2-D case, the constraint $t$ can be depicted as follows.
+\center{\includegraphics[scale=.25]{tibfig2} 
+}}
 
 
 \frame{
 \frametitle{Selecting t or $\lambda(t)$}
-\begin{itemize}
-\item
-In the equivalent unconstrained problem $\lambda(t)$ is a function of t
-\[
-E^L(\beta)=\norm{Y=X\beta}_2^2 + \lambda \norm{\beta}_1^2
-\]
-\item
-Because the 
-\end{itemize}
+    \begin{itemize}
+        \item
+        In the equivalent unconstrained problem $\lambda(t)$ is a function of t
+        \[
+        E^L(\beta)=\norm{Y-X\beta}_2^2 + \lambda \norm{\beta}_1^2
+        \]
+        \item
+        Because the 
+    \end{itemize}
 }
 
 
@@ -291,6 +299,24 @@ Because the
 
 
 \subsection{Prostate Cancer}
+
+\frame{
+    \begin{itemize}
+        \item This prostrate cancer data comes from a study by Stamey et al. (1989) that examined the correlation between the level of prostrate specific antigen and a number of clinical measures.
+        \item Our regressors are log(cancer volume) (lcavol), log(prostrate weight) (lweight), age, log(benign prostatic hyperlasia amount) (lbph), seminal vesicle invasion (svi), log(capsular penetration) (lcp), Gleason score (gleason) and percentage Gleason scores 4 or 5 (pgg45).
+        \item This graph exhibits the lasso shrinkage of the coefficients; each curve represents a lasso coefficient as a function of the scaled lasso parameter s = t/sum; the broken line represents the model for s hat = 0.44, selected by generalized cross-validation
+    \end{itemize}
+}
+
+\frame{
+
+\center{\includegraphics[scale=.25]{tibfig5}}
+\center{\includegraphics[scale=.25]{tibtable1}}
+
+}
+
+
+
 \subsection{Oil and Gas}
 \subsection{House Prices}
 
@@ -312,10 +338,88 @@ Because the
 \frame{
 \frametitle{Simulations}
 \begin{itemize}
-    \item something
+    \item 
+    Tibshirani investigates several simulations testing Lasso alongside OLS, Ridge and subset selection
+    \item
+    This helps to shed some light on where lasso is most useful in the spectrum of options
+    \item
+    In these simulations we draw from a model of the form 
+    \[
+    y = \hat{\beta}^TX + \sigma \epsilon
+    \]
     
 \end{itemize}
 }
+
+\frame{
+\frametitle{Simulation 1}
+\begin{itemize}
+    \item
+    We have
+$$
+\beta = (3,1.5,0,0,2,0,0,0)^T
+$$
+
+    \item
+    $\epsilon$ is standard normal, $\sigma = 3$ and the correlation between $x_i$ and $x_j$ is $\rho^{|i-j|}$ with $\rho = 0.5$
+    
+    \item
+    50 samples were drawn at 20 observations each
+    
+    \item
+    Both subset selection and Lasso will set some of the $\beta$'s to zero, we can compare how often models are produced with correct non-zero coefficients
+
+\end{itemize}
+}
+
+\frame{
+\begin{multicols}{2}
+
+\includegraphics[scale=.45]{tibtable4}
+
+\includegraphics[scale=.45]{tibtable5}
+\end{multicols}
+Notice that although Lasso only chooses (1,2,5) 2.5\% of the time (1,2,5) are retained in 95.5\% of the models, where Subset has a tendency to under-fit.
+
+}
+
+\frame{
+\frametitle{Simulation 1}
+
+\center{Box and whisker plots of the coefficients are compared}
+
+\begin{multicols}{2}
+    ${}^1$\includegraphics[scale = .22]{tibfig8-1}\\
+    ${}^2$\includegraphics[scale = .22]{tibfig8-2}\\
+    ${}^3$\includegraphics[scale = .22]{tibfig8-3}\\
+    ${}^4$\includegraphics[scale = .22]{tibfig8-4}\\
+    \includegraphics[scale = .22]{tibfig8-5}${}^5$\\
+    \includegraphics[scale = .22]{tibfig8-6}${}^6$\\
+    \includegraphics[scale = .22]{tibfig8-7}${}^7$\\
+    \includegraphics[scale = .22]{tibfig8-8}${}^8$\\
+    
+\end{multicols}    
+Notice the variability on the OLS, Ridge and subset coefficients compared to Lasso
+
+}
+
+\frame{
+\frametitle{Simulation2}
+\begin{itemize}
+\item
+This is the same as simulation 1 but with $\beta = (0.85,0.85,0.85,0.85,0.85,0.85,0.85,0.85)^T$  and $\sigma = 3$
+
+\item
+In this data there is a large number of small effects
+\end{itemize}
+}
+
+\frame{
+\frametitle{Simulation2}
+\includegraphics[scale = .4]{tibtable6}
+
+}
+
 
 
 
