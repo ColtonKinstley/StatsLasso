@@ -36,7 +36,7 @@
 	\begin{itemize}
 	\item Recall the ordinary least squares procedure (OLS) estimates unknown coefficients in a linear regression model by minimizing the {\color{red}squared difference} between the {\color{purple}predicted} and {\color{blue}actual} responses. 
 	
-	\item We would like to fit $n$ data points to a model of the form {\color{purple}$$y_1= \beta_0 + \beta_1 x_1 + \beta_2 x_2+ \dots +\beta_{p-1} x_{p-1}$$}
+	\item We would like to fit $n$ data points to a model of the form {\color{purple}$$y= \beta_0 + \beta_1 x_1 + \beta_2 x_2+ \dots +\beta_{p-1} x_{p-1}+\color{red}\epsilon$$}
 	
 	\item Let $X$ denote the $n \times p$ design matrix where the $x_{ij}$th entry is the $i$th point of sample data corresponding to the $j$th dependent variable and $Y$ the response vector
 		
@@ -64,7 +64,7 @@
     $$ E({\color{purple}\hat{\beta} }) = \sum_{i=1}^n {\color{red}{\epsilon_i^2}} = \norm{{\color{blue}Y}^2_2- {\color{purple}X\beta}}_2^2$$
     
     \item It can be shown that the minimizers are
-    $\hat{\beta} = (X^TX)^{-1}X^TY$ but these solutions are usually approximated
+    $\hat{\beta} = (X^TX)^{-1}X^TY$ but these solutions are usually approximated.
     \end{itemize}
     
 \end{itemize}
@@ -185,15 +185,6 @@ Consider the constrained optimization problems for lasso and ridge in the case o
 $$picture of constrained problem$$
 }
 
-\subsection{Properties of the Estimates}
-\frame{
-\begin{itemize}
-\item As in Ridge and subset selection the Lasso enjoys lower variance in the magnitude of coefficients than OLS
-\item Why? I'm not sure...
-
-\end{itemize}
-
-}
 
 \addtocontents{toc}{\newpage}
 \section[]{Tuning Parameter}
@@ -208,30 +199,51 @@ $$picture of constrained problem$$
 
 \frame{
     \frametitle{Tuning parameter}
+    In order to obtain an optimal estimate, of the $\hat{\beta}$ coefficients, the tuning parameter $t$ must be chosen carefully. Recall that in ridge regression,
+    \[
+    E_R(\beta) = \sum_{i=1}^n{\Big(y_i-\beta_0 - \sum_{j=1}^p {\beta_j x_{ij}}\Big)^2} + \lambda \sum_{j=1}^p {\beta_j^2} = OLS + \lambda \sum_{j=1}^p {\beta_j^2}
+    \]
+    the least squares component is being minimized such that 
+    \[
+    \sum_{j=1}^p {\beta_j^2} \le t
+    \]
+    }
+     
+    
+\frame{
+    Similarly, remember that the Lasso method 
+    \[
+    E_R(\beta)=\sum_{i=1}^n{\Big(y_i-\beta_0 - \sum_{j=1}^p {\beta_j x_{ij}}\Big)^2} + \lambda \sum_{j=1}^p {|\beta_j|} = OLS + \lambda \sum_{j=1}^p {|\beta_j|}
+    \]
+    is minimizing the least squares component given the condition that 
+    \[
+    \sum_{j=1}^p {|\beta_j|} \le t
+    \]
+}
+
+\frame{
     \begin{itemize}
-        \item t or $\lambda(t)$ determines the amount of shrinkage we apply to the OLS estimates
-        \item Let $\hat{\beta}^o = 
+        Tuning parameter $t$ or $\lambda(t)$ directly determines the amount of shrinkage applied to the OLS estimates. Consider the OLS estimates as vector  
+        \linebreak $\hat{\beta}^o = 
         \begin{bmatrix}
            \hat{\beta}_{1} \\
            \hat{\beta}_{2} \\
            \vdots \\
            \hat{\beta}_{p}
          \end{bmatrix}$ 
-         be the OLS coefficients
-         \item Define $t_{o} = \sum_{j=1}^p |B_{j}|$, at $t \geq t_o$ we recover the OLS estimates
+         \linebreak Define $t_{o} = \sum_{j=1}^p |\beta_{j}|$. at $t \geq t_o$ we recover the OLS estimates
     \end{itemize}
 }
 
 \frame{
 \frametitle{Tuning parameter}
-
-    In order to obtain an optimal estimate, of the $\hat{\beta}$ coefficients, the
-    tuning parameter $t$ must be chosen carefully. Recall that we saw the tuning parameter as a 
-             \item Setting $t \leq t_{0}$ will \color{red} shrink \color{black} the solutions toward 0.
-             \item For example, setting $t = \frac{t_{0}}{2}$ is similar to selecting the best subset containing half of the regressors. 
-
-
+     \begin{itemize}
+         \item Setting $t \leq t_{0}$ will \color{red} shrink \color{black} the solutions toward 0.
+         \item For example, setting $t = \frac{t_{0}}{2}$ is similar to selecting the best subset containing half of the regressors. 
+    \end{itemize}
+            
 }
+
 
 
 \frame{
@@ -254,18 +266,28 @@ Because the
 \end{itemize}
 }
 
+
+
+
+
+
+
 \subsection{Cross-Validation}
+
 \subsection{BIC}
+
 \subsection{Shooting Method}
 
-\section{Examples}
 
+%Examples
+\section{Examples}
 
 \frame{
 \begin{multicols}{2}
  \tableofcontents[currentsection, hideothersubsections]
 \end{multicols}
 }
+
 
 
 \subsection{Prostate Cancer}
@@ -276,7 +298,7 @@ Because the
 
 
 
-%Examples
+
 
 %Simulations
 \section{Simulation Analysis}
@@ -285,6 +307,14 @@ Because the
 \begin{multicols}{2}
  \tableofcontents[currentsection, hideothersubsections]
 \end{multicols}
+}
+
+\frame{
+\frametitle{Simulations}
+\begin{itemize}
+    \item something
+    
+\end{itemize}
 }
 
 
@@ -303,9 +333,10 @@ Because the
     \begin{itemize}
         \item {\color{purple}$y_1= \beta_0 + \beta_1 x_1 + \beta_2 x_2+ \dots +\beta_{p-1} x_{p-1}$}
         \item
-        $\hat{\beta}(lasso) = argmin{\underset{\beta}} \norm{y- \sum_{j-1}^p x_j \beta_j}^2 + \lambda \sum_{j=1}^p |\beta|$
-    \end{itemize}
-
+$
+        \hat{\beta}(lasso) = \underset{\beta}{argmin} \norm{y- \sum_{j-1}^p x_j \beta_j}^2 + \lambda \sum_{j=1}^p |\beta|
+$
+\end{itemize}
 
 }
 
@@ -370,8 +401,6 @@ Because the
 
 \frame{
 \frametitle{References}
-
-
 
 }
 
