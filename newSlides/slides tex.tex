@@ -286,7 +286,15 @@ In the 2-D case, the constraint $t$ can be depicted as follows.
 \subsection{Cross-Validation}
 
 \frame{
-    \frametitle{Cross-validation}
+    \frametitle{$k$-Fold Cross-validation}
+    \begin{multicols}{2}
+    \includegraphics[scale=0.5]{cross-validation} 
+    \begin{itemize}
+    \item Data is split into $k$ subsamples of size $\frac{n}{k}$
+    \item The training algorithm is run over the data $k$ times, each time using a different subsample as the test set, and the remaining data as the training set. 
+    \item The coefficients are measured 
+    \end{itemize} 
+    \end{multicols}
 }
 
 \subsection{BIC}
@@ -335,6 +343,7 @@ In the 2-D case, the constraint $t$ can be depicted as follows.
 
 %Simulations
 \section{Simulation Analysis}
+\subsection[Simulation Analysis]{}
 
 \frame{
 \begin{multicols}{2}
@@ -354,6 +363,9 @@ In the 2-D case, the constraint $t$ can be depicted as follows.
     \[
     y = \hat{\beta}^TX + \sigma \epsilon
     \]
+    
+    \item
+    Let $s = \frac{t}{\norm{\beta^o}}$ this is roughly equivalent to the proportion of non-zero variables
     
 \end{itemize}
 }
@@ -382,13 +394,16 @@ $$
 \frame{
 \begin{multicols}{2}
 
-\includegraphics[scale=.45]{tibtable4}
+\includegraphics[scale=.45]{tibtable4.png}
 
-\includegraphics[scale=.45]{tibtable5}
+\includegraphics[scale=.45]{tibtable5.png}
 \end{multicols}
 Notice that although Lasso only chooses (1,2,5) 2.5\% of the time (1,2,5) are retained in 95.5\% of the models, where Subset has a tendency to under-fit.
 
 }
+
+
+
 
 \frame{
 \frametitle{Simulation 1}
@@ -412,6 +427,9 @@ Notice the variability on the OLS, Ridge and subset coefficients compared to Las
 
 \frame{
 \frametitle{Simulation2}
+\center{$y = \hat{\beta}^TX + \sigma \epsilon$}\\
+
+
 \begin{itemize}
 \item
 This is the same as simulation 1 but with $\beta = (0.85,0.85,0.85,0.85,0.85,0.85,0.85,0.85)^T$  and $\sigma = 3$
@@ -425,12 +443,12 @@ In this data there is a large number of small effects
 \frametitle{Simulation2}
 \includegraphics[scale = .4]{tibtable6}
 
+Ridge performs well here compared to the full least squares estimates, we note that Lasso outperforms OLS in this case
 }
-
 
 \frame{
 \frametitle{Simulation 3}
-\center{$y = \hat{\beta}^TX + \sigma \epsilon$}\\
+\center{$y = \beta^TX + \sigma \epsilon$}\\
 
 \begin{itemize}
 \item 
@@ -446,6 +464,32 @@ This data should favor subset selection
 \includegraphics[scale = .4]{tibtable7}\\
 
 We see that subset selection performs well as expected and Lasso is comparable 
+}
+
+\frame{
+\frametitle{Simulation 4}
+\center{$y = \beta^TX + \sigma \epsilon$}\\
+
+\begin{itemize}
+\item
+Now the Lasso is tested on a larger data set, subset selection is not used here as it is computationally impractical for such high dimensional data
+
+\item
+$\beta = (0,\dots,0,2,\dots,2,0,\dots,0,2,\dots,2)^T$ there are ten repeats of each and 40 variables in total and $\sigma = 15$
+
+\item
+A pairwise correlation of 0.5 was introduced between the variables
+
+\item
+50 data sets are generated with 100 observations from each
+\end{itemize}
+}
+
+\frame{
+\frametitle{Simulation 4}
+\includegraphics[scale = .4]{tibtable8}\\
+
+We see that OLS performed poorly and although Ridge was best in this case Lasso was a close second
 }
 
 
@@ -533,6 +577,9 @@ $
 
 \frame{
 \frametitle{References}
+
+Cross validation image: 
+\url{https://www.edureka.co/blog/implementation-of-decision-tree/}
 
 }
 
