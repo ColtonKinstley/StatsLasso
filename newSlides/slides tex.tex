@@ -190,9 +190,9 @@ Consider the constrained optimization problems for lasso and ridge in the case o
 
 
 \addtocontents{toc}{\newpage}
-\section[]{Tuning Parameter}
+\section[Tuning Parameter]{Tuning Parameter}
 
-
+\subsection[Tuning Parameter]{}
 \frame{
 \begin{multicols}{2}
  \tableofcontents[currentsection, hideothersubsections]
@@ -226,6 +226,7 @@ Consider the constrained optimization problems for lasso and ridge in the case o
 } 
 
 \frame{
+        \frametitle{Tuning parameter}
         Tuning parameter $t$ or $\lambda(t)$ directly determines the amount of shrinkage applied to the OLS estimates.
         \begin{itemize}
         \item Consider the OLS estimates as vector $\hat{\beta}^{ols}$. 
@@ -269,18 +270,24 @@ In the 2-D case, the constraint $t$ can be depicted as follows.
         \[
         E^L(\beta)=\norm{Y-X\beta}_2^2 + \lambda \norm{\beta}_1^2
         \]
-        \item
-        Because the 
     \end{itemize}
 }
 
-
-
-
-
-
+\frame{
+    \frametitle{Methods for selecting $t$}
+    There are a number of methods used to estimate lasso parameter $t$. We will be covering
+    \begin{itemize}
+        \item Cross-validation
+        \item Bayesian information criteria (BIC)
+        \item Shooting method
+    \end{itemize}
+}
 
 \subsection{Cross-Validation}
+
+\frame{
+    \frametitle{Cross-validation}
+}
 
 \subsection{BIC}
 
@@ -418,6 +425,27 @@ In this data there is a large number of small effects
 \frametitle{Simulation2}
 \includegraphics[scale = .4]{tibtable6}
 
+}
+
+
+\frame{
+\frametitle{Simulation 3}
+\center{$y = \hat{\beta}^TX + \sigma \epsilon$}\\
+
+\begin{itemize}
+\item 
+In the 3rd simulation we let $\beta = (5,0,0,0,0,0,0,0)^T$ and $\sigma = 2$
+\item 
+This data should favor subset selection
+\end{itemize}
+
+}
+
+\frame{
+\frametitle{Simulation3}
+\includegraphics[scale = .4]{tibtable7}\\
+
+We see that subset selection performs well as expected and Lasso is comparable 
 }
 
 
