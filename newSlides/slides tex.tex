@@ -36,16 +36,11 @@
 	\begin{itemize}
 	\item Recall the ordinary least squares procedure (OLS) estimates unknown coefficients in a linear regression model by minimizing the {\color{red}squared difference} between the {\color{purple}predicted} and {\color{blue}actual} responses. 
 	
-<<<<<<< HEAD
-	\item We would like to fit $n$ data points to a model of the form $${\color{purple}y}= \beta_0 + \beta_1 x_1 + \beta_2 x_2+ \dots +\beta_{p-1} x_{p-1} F$$
-=======
 	\item We would like to fit $n$ data points to a model of the form {\color{purple}$$y_1= \beta_0 + \beta_1 x_1 + \beta_2 x_2+ \dots +\beta_{p-1} x_{p-1}$$}
->>>>>>> 4498078cfda966c2a153d3716e39bfbc96de0c7c
 	
 	\item Let $X$ denote the $n \times p$ design matrix where the $x_{ij}$th entry is the $i$th point of sample data corresponding to the $j$th dependent variable and $Y$ the response vector
 		
-	
-	\item  So long as $n \geq p$ OLS gives us a best-fit hyper-plane as follows:
+
 	\end{itemize}
 }
 
@@ -55,7 +50,11 @@
 {
 \begin{itemize}
 
-    \item The {\color{red}difference} between the actual and predicted response for each data point $i \in 1 \dots n$ is
+	\item  So long as $n \geq p$, OLS gives us a best-fit hyper-plane as follows:
+    
+    \begin{itemize}
+    \item The {\color{red}difference}, or the error, between the actual and 
+    predicted response for each data point $i \in 1 \dots n$ is
     
     \begin{equation*}
      {\color{red} \epsilon_{i}} =  {\color{blue} Y_{i}} - {\color{purple} X\beta}
@@ -66,8 +65,9 @@
     
     \item It can be shown that the minimizers are
     $\hat{\beta} = (X^TX)^{-1}X^TY$ but these solutions are usually approximated
+    \end{itemize}
+    
 \end{itemize}
-
 }
 
 \subsection{What can be improved?}
@@ -79,7 +79,7 @@
   Two common problems with OLS estimates are as follows:
   \begin{itemize}
   \item Imprecision
-  \item OLS yields unbiased estimates but the variance may be large.
+  \item The expected value of the error term is 0 but the variance may be large.
   \item How does this happen? Recall that the least squares estimation $\hat{\beta} = (X^T X)^{-1}X^T Y$.
         \item If $(X^T X)$ is near-singular, then small changes in the X might lead to large changes in $\hat{\beta}$.
         \item So, even if our $\hat{\beta}$ fits one sample well, there is no guarantee it will fit other samples well, let alone the population! 
@@ -175,7 +175,7 @@ Ridge Regression
 \begin{itemize}
 \item Lasso has the desirable property that it will usually set some of the coefficients equal to zero 
 \item Like in subset selection this leads to a more interpretable model overall
-\item In Ridge and OLS the minimizing coefficients are almost always non-zero
+\item In Ridge and OLS the minimizing coefficients are almost certainly non-zero
 \end{itemize}
 }
 
@@ -224,10 +224,12 @@ $$picture of constrained problem$$
 
 \frame{
 \frametitle{Tuning parameter}
-\begin{itemize}
+
+    In order to obtain an optimal estimate, of the $\hat{\beta}$ coefficients, the
+    tuning parameter $t$ must be chosen carefully. Recall that we saw the tuning parameter as a 
              \item Setting $t \leq t_{0}$ will \color{red} shrink \color{black} the solutions toward 0.
              \item For example, setting $t = \frac{t_{0}}{2}$ is similar to selecting the best subset containing half of the regressors. 
-\end{itemize}
+
 
 }
 
@@ -296,16 +298,12 @@ Because the
 \end{multicols}
 }
 
-
 \frame{
     
     \begin{itemize}
         \item {\color{purple}$y_1= \beta_0 + \beta_1 x_1 + \beta_2 x_2+ \dots +\beta_{p-1} x_{p-1}$}
-        
         \item
-
-$\hat{\beta}(lasso) = argmin_\beta \norm{y- \sum_{j-1}^p x_j \beta_j}^2 + \lambda \sum_{j=1}^p |\beta| $
-
+        $\hat{\beta}(lasso) = argmin{\underset{\beta}} \norm{y- \sum_{j-1}^p x_j \beta_j}^2 + \lambda \sum_{j=1}^p |\beta|$
     \end{itemize}
 
 
@@ -370,7 +368,12 @@ $\hat{\beta}(lasso) = argmin_\beta \norm{y- \sum_{j-1}^p x_j \beta_j}^2 + \lambd
 }
 
 
+\frame{
+\frametitle{References}
 
+
+
+}
 
 
 
